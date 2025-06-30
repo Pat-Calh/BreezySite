@@ -41,7 +41,8 @@ export default function PawParticles({ count = 16 }) {
   // On mount or when count changes, (re)generate all paws
   useEffect(() => {
     setPaws(Array.from({ length: count }, (_, i) => createPaw(i)));
-    return () => clearTimeout(timeoutRef.current);
+    const timeoutId = timeoutRef.current;
+    return () => clearTimeout(timeoutId);
   }, [count]);
 
   // When a paw's animation ends, respawn it with new random properties
