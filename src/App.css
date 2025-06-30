@@ -16,7 +16,7 @@
 .bg-image {
   position: fixed;
   top: 0; left: 0; width: 100vw; height: 100vh;
-  background-attachment: fixed;
+
   z-index: -3;
   opacity: 0.93;
   mix-blend-mode: lighten;
