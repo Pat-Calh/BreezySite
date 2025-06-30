@@ -26,8 +26,8 @@ function App() {
     // Root container: sets up background image and layout
     <div
       className="App cute-theme"
-      // Use inline style to set the animated GIF background from public folder
-      style={{ background: "url('/lofiback.gif') center center / cover no-repeat fixed" }}
+      // Background GIF commented out - can be re-enabled or moved to CSS
+      // style={{ background: "url('/lofiback.gif') center center / cover no-repeat fixed" }}
     >
       {/* Interactive animated gradient background overlay */}
       <InteractiveBackground />
@@ -37,7 +37,7 @@ function App() {
         {/* Fursona image (custom GIF) */}
         <img src="/breezy1.gif" alt="Breezy the Fox" className="fursona-img" />
         {/* Fursona name in cute font */}
-        <h1 className="fursona-name">Breezy the Fox</h1>
+        <h1 className="fursona-name">Breezy</h1>
         {/* Social media links with animated SVG icons */}
         <div className="social-links">
           {/* Twitter */}
