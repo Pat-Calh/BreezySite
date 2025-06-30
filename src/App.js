@@ -23,14 +23,61 @@ function isMobile() {
 }
 
 // Main App component for Breezy the Fox's website
+import React, { useState } from 'react';
+
+function isIOS() {
+  return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+}
+
 function App() {
   // Show fewer paw particles on mobile for better performance
   const pawCount = isMobile() ? 8 : 16;
+  const [motionEnabled, setMotionEnabled] = useState(false);
+  const [showMotionBtn, setShowMotionBtn] = useState(isIOS() && typeof DeviceMotionEvent !== 'undefined' && typeof DeviceMotionEvent.requestPermission === 'function');
+
+  const handleEnableMotion = () => {
+    if (typeof DeviceMotionEvent !== 'undefined' && typeof DeviceMotionEvent.requestPermission === 'function') {
+      DeviceMotionEvent.requestPermission().then(response => {
+        if (response === 'granted') {
+          setMotionEnabled(true);
+          setShowMotionBtn(false);
+        }
+      });
+    }
+  };
+
   return (
     // Root container: sets up background image and layout
     <div
       className="App cute-theme"
     >
+      {showMotionBtn && (
+        <button
+          className="motion-btn"
+          onClick={handleEnableMotion}
+          style={{
+            position: 'absolute',
+            top: 24,
+            left: '50%',
+            transform: 'translateX(-50%)',
+            zIndex: 1000,
+            padding: '0.75em 1.5em',
+            borderRadius: '2em',
+            background: 'rgba(255,255,255,0.92)',
+            border: '2px solid #ffb6c1',
+            color: '#ff69b4',
+            fontWeight: 'bold',
+            fontSize: '1.1em',
+            boxShadow: '0 2px 8px rgba(0,0,0,0.07)',
+            cursor: 'pointer',
+            outline: 'none',
+            transition: 'background 0.2s, color 0.2s',
+          }}
+        >
+          Enable Motion Background
+        </button>
+      )}
+
       <div
   className="bg-image"
   style={{
