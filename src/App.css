@@ -10,16 +10,25 @@
 
 /* Root app container: sets up main layout and background (GIF set via inline style in App.js) */
 .App.cute-theme {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   position: relative;
-  overflow: hidden;
-  /* Ensures the app takes up the full viewport height and centers content horizontally and vertically */
-  
+  z-index: 0;
 }
+.bg-image {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background-attachment: fixed;
+  z-index: -3;
+  opacity: 0.93;
+  mix-blend-mode: lighten;
+  pointer-events: none;
+}
+
+/* Adjust interactive-bg for better blending */
+.interactive-bg {
+  opacity: 0.55;
+}
+
+
 
 /*
   Animated interactive gradient overlay
@@ -39,14 +48,35 @@
 }
 
 .App-header {
-  background: rgba(255,255,255,0.7);
+  background: rgba(255,255,255,0.78);
   border-radius: 32px;
   box-shadow: 0 4px 32px rgba(0,0,0,0.08);
   padding: 3rem 2.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+  max-width: 420px;
+  margin: 2.5rem auto 2rem auto;
+  width: 90vw;
+  min-width: 220px;
+  z-index: 1;
 }
+
+@media (max-width: 600px) {
+  .App-header {
+    padding: 1.2rem 0.5rem;
+    max-width: 98vw;
+    border-radius: 18px;
+  }
+}
+
+@media (max-width: 400px) {
+  .App-header {
+    padding: 0.5rem 0.2rem;
+    border-radius: 9px;
+  }
+}
+
 
 .fursona-img {
   width: 180px;
@@ -208,4 +238,75 @@
   45% { transform: scale(0.98) rotate(9deg); }
   70% { transform: scale(1.12) rotate(-6deg); }
   100% { transform: scale(1.05) rotate(5deg); }
+}
+
+/* Cute pastel navigation bar styles */
+.main-nav {
+  margin: 2.5rem auto 1.5rem auto;
+  padding: 1.2rem 2rem;
+  background: rgba(255,255,255,0.78);
+  border-radius: 32px;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.08);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 420px;
+  width: 90vw;
+  min-width: 220px;
+  z-index: 1;
+}
+
+@media (max-width: 600px) {
+  .main-nav {
+    padding: 1rem 0.5rem;
+    max-width: 98vw;
+    border-radius: 18px;
+  }
+}
+
+@media (max-width: 400px) {
+  .main-nav {
+    padding: 0.4rem 0.2rem;
+    border-radius: 9px;
+  }
+}
+
+.main-nav ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+.main-nav .nav-link {
+  font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif;
+  font-size: 1.15rem;
+  color: #fffbe0;
+  background: #ffb86b;
+  padding: 0.5rem 1.5rem;
+  border-radius: 1.5rem;
+  text-decoration: none;
+  box-shadow: 0 2px 8px 0 rgba(255,186,219,0.09);
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+  border: 2px solid transparent;
+}
+.main-nav .nav-link:hover, .main-nav .nav-link:focus {
+  background: #fffbe0;
+  color: #ffb6c1;
+  border: 2px solid #aeefff;
+  transform: translateY(-2px) scale(1.07);
+  outline: none;
+}
+@media (max-width: 600px) {
+  .main-nav {
+    padding: 0.5rem 0.5rem;
+    max-width: 98vw;
+  }
+  .main-nav ul {
+    gap: 0.5rem;
+  }
+  .main-nav .nav-link {
+    font-size: 1rem;
+    padding: 0.4rem 0.7rem;
+  }
 }
