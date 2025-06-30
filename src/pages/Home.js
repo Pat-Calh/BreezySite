@@ -1,9 +1,20 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
+import FluffyBorder from '../FluffyBorder';
+
+export const homeCardRef = React.createRef();
 
 export default function Home() {
+  useEffect(() => {
+    // This ensures the ref always points to the card div for parallax anchoring
+    if (homeCardRef.current) {
+      homeCardRef.current.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+    }
+  }, []);
+
   return (
-    <header className="App-header">
-      {/* Fursona image (custom GIF) */}
+    <FluffyBorder color="#ffb6c1">
+      <header className="App-header" ref={homeCardRef}>
+        {/* Fursona image (custom GIF) */}
       <img src="/breezy1.gif" alt="Breezy the Fox" className="fursona-img" />
       {/* Fursona name in cute font */}
       <h1 className="fursona-name">Breezy</h1>
@@ -23,5 +34,6 @@ export default function Home() {
         </a>
       </div>
     </header>
+    </FluffyBorder>
   );
 }

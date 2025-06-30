@@ -11,11 +11,12 @@ import './App.css';
 // Import the animated paw particle effect component
 import PawParticles from './PawParticles';
 import { Routes, Route, Link } from 'react-router-dom';
-import Home from './pages/Home';
+import Home, { homeCardRef } from './pages/Home';
 import About from './pages/About';
 import Contact from './pages/Contact';
 // Import the interactive animated background gradient component
 import InteractiveBackground from './InteractiveBackground';
+import OrbitingPawParticles from './OrbitingPawParticles';
 
 // Utility function to detect if the user is on a mobile device
 function isMobile() {
@@ -90,10 +91,13 @@ function App() {
     opacity: 0.93,
   }}
 ></div>
+
+      {/* Orbiting paw particles around the Home card */}
+      {window.location.pathname === '/' && <OrbitingPawParticles targetRef={homeCardRef} />}
       {/* Interactive animated gradient background overlay */}
       <InteractiveBackground />
-      {/* Animated floating paw prints background effect */}
-      <PawParticles count={pawCount} />
+      {/* Animated floating paw prints background effect (disabled for orbiting mode) */}
+      {/* <PawParticles count={pawCount} /> */}
 
       {/* Navigation Bar */}
       <nav className="main-nav">
