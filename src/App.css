@@ -1,0 +1,211 @@
+/*
+  App.css
+  Styling for Breezy the Fox's fursona website
+  - Cute, pastel, playful theme
+  - Mobile-friendly and responsive
+  - Animated backgrounds and floating paw effects
+  - Accessible and touch-friendly
+  Context: Created as a fun, interactive React site for a fursona, with social links and custom GIFs.
+*/
+
+/* Root app container: sets up main layout and background (GIF set via inline style in App.js) */
+.App.cute-theme {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  /* Ensures the app takes up the full viewport height and centers content horizontally and vertically */
+  
+}
+
+/*
+  Animated interactive gradient overlay
+  - Blends with GIF background for dreamy, magical effect
+  - Reacts to mouse (desktop) or device tilt (mobile)
+  - Opacity and blend mode set for layered look
+*/
+.interactive-bg {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  z-index: -2;
+  pointer-events: none;
+  transition: background 0.5s cubic-bezier(0.4,0.2,0.2,1);
+  will-change: background;
+  opacity: 0.6;
+  mix-blend-mode: lighten;
+}
+
+.App-header {
+  background: rgba(255,255,255,0.7);
+  border-radius: 32px;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.08);
+  padding: 3rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.fursona-img {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 6px solid #ffe0ec;
+  box-shadow: 0 6px 24px #c2e9fb80;
+  margin-bottom: 1.5rem;
+  background: #fff;
+  display: block;
+}
+
+.fursona-name {
+  font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif;
+  color: #ff7eb9;
+  font-size: 3rem;
+  margin-bottom: 2rem;
+  letter-spacing: 2px;
+  text-shadow: 1px 2px 8px #fff6;
+}
+
+/*
+  Responsive tweaks for mobile devices
+  - Smaller images, font, and tighter spacing
+  - Larger touch targets for social icons
+*/
+@media (max-width: 600px) {
+  .fursona-img {
+    width: 110px;
+    height: 110px;
+    border-width: 4px;
+    margin-bottom: 1rem;
+  }
+  .App-header {
+    padding: 1.2rem 0.5rem;
+  }
+  .fursona-name {
+    font-size: 2rem;
+  }
+  .social-links {
+    gap: 1rem;
+  }
+  .social-icon {
+    width: 40px;
+    height: 40px;
+    margin: 0 4px;
+  }
+}
+
+/*
+  Extra-tight layout for very small screens
+  - Even smaller font/icon sizes and padding
+*/
+@media (max-width: 400px) {
+  .App-header {
+    padding: 0.5rem 0.2rem;
+  }
+  .fursona-name {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+  .social-links {
+    gap: 0.4rem;
+  }
+  .social-icon {
+    width: 32px;
+    height: 32px;
+    margin: 0 2px;
+  }
+}
+
+.social-links {
+  display: flex;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2px 8px #e6e6fa80;
+  transition: transform 0.22s cubic-bezier(0.4,2,0.4,1), box-shadow 0.22s, filter 0.22s;
+  border: 2px solid #f7f7fa;
+  cursor: pointer;
+  outline: none;
+}
+
+/*
+  Focus style for accessibility
+  - Glow and highlight for keyboard navigation
+*/
+.social-icon:focus {
+  box-shadow: 0 0 0 4px #ffb6c1bb, 0 2px 8px #e6e6fa80;
+  filter: brightness(1.15) drop-shadow(0 0 8px #fffbe0cc);
+}
+
+/*
+  Hover style for social icons
+  - Bounce and glow animation
+*/
+/*
+  This section defines the hover style for social icons, providing a bounce and glow animation effect.
+*/
+.social-icon:hover {
+  transform: scale(1.13) rotate(-5deg);
+  box-shadow: 0 6px 18px #ffb6c180;
+}
+
+/*
+  Active/click style for social icons
+  - Wiggle animation for playful feedback
+*/
+/*
+  This section defines the active/click style for social icons, providing a wiggle animation effect for playful feedback.
+*/
+.social-icon:active {
+  transform: scale(1.13) rotate(-5deg);
+  box-shadow: 0 6px 18px #ffb6c180;
+}
+
+/*
+  Twitter icon color
+*/
+.twitter svg {
+  fill: #1da1f2;
+}
+.social-icon/*
+  SoundCloud icon color
+*/
+.soundcloud svg {
+  fill: #ff5500;
+}
+.social-icon/*
+  Telegram icon color
+*/
+.telegram svg {
+  fill: #229ED9;
+}
+
+/*
+  Keyframes for bounce and wiggle social icon animations
+*/
+@keyframes social-bounce {
+  0% { transform: scale(1) rotate(0); }
+  30% { transform: scale(1.25) rotate(-10deg); }
+  60% { transform: scale(0.96) rotate(5deg); }
+  100% { transform: scale(1.18) rotate(-8deg); }
+}
+
+@keyframes social-wiggle {
+  0% { transform: scale(1.05) rotate(5deg); }
+  20% { transform: scale(1.15) rotate(-8deg); }
+  45% { transform: scale(0.98) rotate(9deg); }
+  70% { transform: scale(1.12) rotate(-6deg); }
+  100% { transform: scale(1.05) rotate(5deg); }
+}
