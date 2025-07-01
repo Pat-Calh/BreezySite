@@ -6,16 +6,14 @@
 //
 // All comments reference user design goals and conversation context.
 
-// Import main stylesheet for app-wide styles
+import React, { useState } from 'react';
 import './App.css';
-// Import the animated paw particle effect component
 import PawParticles from './PawParticles';
 import { Routes, Route, Link, useLocation } from 'react-router-dom';
 import Home, { homeCardRef } from './pages/Home';
 import PageTransition from './PageTransition';
 import About from './pages/About';
 import Contact from './pages/Contact';
-// Import the interactive animated background gradient component
 import InteractiveBackground from './InteractiveBackground';
 import OrbitingPawParticles from './OrbitingPawParticles';
 
@@ -24,8 +22,6 @@ function isMobile() {
   return /Mobi|Android/i.test(navigator.userAgent);
 }
 
-import React, { useState } from 'react';
-// Main App component for Breezy the Fox's website
 
 function isIOS() {
   return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
