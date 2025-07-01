@@ -24,8 +24,8 @@ function isMobile() {
   return /Mobi|Android/i.test(navigator.userAgent);
 }
 
-// Main App component for Breezy the Fox's website
 import React, { useState } from 'react';
+// Main App component for Breezy the Fox's website
 
 function isIOS() {
   return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
