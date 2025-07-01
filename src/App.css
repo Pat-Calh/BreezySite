@@ -215,7 +215,7 @@
 }
 
 .fursona-name, h1, h2, h3, h4, h5, h6, .main-nav .nav-link, .App-header p {
-  font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif;
+  font-family: 'Comic Neue', 'Comic Sans MS', 'Comic Sans', cursive, sans-serif; /* Use Comic Neue web font for consistent playful look */
   color: #ff7eb9;
   letter-spacing: 2px;
   text-shadow: 1px 2px 8px #fff6;
