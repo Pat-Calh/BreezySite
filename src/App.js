@@ -45,7 +45,6 @@ function App() {
     ) {
       DeviceMotionEvent.requestPermission().then(response => {
         if (response === 'granted') {
-          setMotionEnabled(true);
           setShowMotionBtn(false);
         }
       });
