@@ -17,6 +17,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  /* Add safe area insets for iOS notch */
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+  box-sizing: border-box;
 }
 .bg-image {
   position: fixed;
@@ -122,6 +126,30 @@
   .App-header {
     padding: 0.5rem 0.2rem;
     border-radius: 9px;
+    /* Add safe area insets for iOS notch */
+    padding-top: calc(0.5rem + env(safe-area-inset-top));
+    padding-bottom: calc(0.5rem + env(safe-area-inset-bottom));
+    box-sizing: border-box;
+  }
+  .fursona-name {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: #ff5a8a; /* Slightly deeper pastel for contrast */
+    text-shadow: 1px 2px 10px #fff9, 0 2px 6px #ffb6c1cc;
+  }
+  .main-nav .nav-link {
+    font-size: 1.07rem;
+    min-width: 44px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .social-icon {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    min-height: 44px;
   }
 }
 
@@ -164,6 +192,10 @@
   }
   .App-header {
     padding: 1.2rem 0.5rem;
+    /* Add safe area insets for iOS notch */
+    padding-top: calc(1.2rem + env(safe-area-inset-top));
+    padding-bottom: calc(1.2rem + env(safe-area-inset-bottom));
+    box-sizing: border-box;
   }
   .fursona-name {
     font-size: 2rem;
@@ -172,9 +204,18 @@
     gap: 1rem;
   }
   .social-icon {
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    min-height: 44px;
     margin: 0 4px;
+  }
+  .main-nav .nav-link {
+    min-width: 44px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 
