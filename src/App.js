@@ -10,8 +10,9 @@
 import './App.css';
 // Import the animated paw particle effect component
 import PawParticles from './PawParticles';
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route, Link, useLocation } from 'react-router-dom';
 import Home, { homeCardRef } from './pages/Home';
+import PageTransition from './PageTransition';
 import About from './pages/About';
 import Contact from './pages/Contact';
 // Import the interactive animated background gradient component
@@ -31,6 +32,7 @@ function isIOS() {
 }
 
 function App() {
+
   // Show fewer paw particles on mobile for better performance
   const pawCount = isMobile() ? 8 : 16;
   const [motionEnabled, setMotionEnabled] = useState(false);
@@ -46,6 +48,9 @@ function App() {
       });
     }
   };
+
+  const location = useLocation();
+
 
   return (
     // Root container: sets up background image and layout
@@ -99,23 +104,25 @@ function App() {
       {/* Animated floating paw prints background effect (disabled for orbiting mode) */}
       {/* <PawParticles count={pawCount} /> */}
 
-      {/* Navigation Bar */}
-      <nav className="main-nav">
-        <ul>
-          <li><Link className="nav-link" to="/">Home</Link></li>
-          <li><Link className="nav-link" to="/about">About</Link></li>
-          <li><Link className="nav-link" to="/contact">Contact</Link></li>
-        </ul>
-      </nav>
-
-      <main>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-        </Routes>
-      </main>
-
+      {/* Floating Nav + Card Container */}
+      <div className="card-nav-flex">
+        <nav className="main-nav">
+          <ul>
+            <li><Link className="nav-link" to="/">Home</Link></li>
+            <li><Link className="nav-link" to="/about">About</Link></li>
+            <li><Link className="nav-link" to="/contact">Contact</Link></li>
+          </ul>
+        </nav>
+        <main>
+          <PageTransition locationKey={location.key}>
+            <Routes location={location}>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/contact" element={<Contact />} />
+            </Routes>
+          </PageTransition>
+        </main>
+      </div>
 
     </div>
   );
