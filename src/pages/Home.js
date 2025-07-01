@@ -7,7 +7,7 @@
   - Accessibility: all social links have aria-labels and open in new tabs
   - Mobile/responsive: layout and spacing are handled in App.css for a seamless user experience across various devices and screen sizes
 */
-import React, { useRef, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import FluffyBorder from '../FluffyBorder';
 
 // Ref used to anchor orbiting paw particles on Home card

@@ -32,10 +32,6 @@ function isIOS() {
 }
 
 function App() {
-  // Reduce paw particle count on mobile for better performance
-  const pawCount = isMobile() ? 8 : 16;
-  // State to track if motion background is enabled (iOS)
-  const [motionEnabled, setMotionEnabled] = useState(false);
   // Only show motion permission button if on iOS and permission API is available
   const [showMotionBtn, setShowMotionBtn] = useState(
     isIOS() && typeof DeviceMotionEvent !== 'undefined' && typeof DeviceMotionEvent.requestPermission === 'function'
