@@ -9,7 +9,7 @@ export default function About() {
     <FluffyBorder>
       <header className="App-header">
         <h2>About Breezy</h2>
-        <p>N/A ATM</p>
+        <p>To be updated soon!</p>
       </header>
     </FluffyBorder>
   );
