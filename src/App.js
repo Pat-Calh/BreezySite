@@ -1,15 +1,17 @@
-/* eslint-disable no-unused-vars */
-// App.js
-// Main entry for Breezy the Fox's fursona website
-// Context: Built as a cute, playful, mobile-friendly React site for a fursona persona.
-// Features: animated gradient overlay, floating paw particles, GIF background, responsive & accessible design.
-// Social links and custom GIF image showcase the character's personality.
-//
-// All comments reference user design goals and conversation context.
+/*
+  App.js
+  Main entry for Breezy the Fox's fursona website
+  - Cute, playful, multi-page React app for a fursona persona
+  - Features: animated gradient overlay, floating paw particles, GIF background
+  - Fully responsive, mobile-optimized, and accessible
+  - Social links and custom GIF image showcase the character's personality
+  - All comments reference user design goals and conversation context
+*/
 
 import React, { useState } from 'react';
 import './App.css';
-import PawParticles from './PawParticles';
+// PawParticles is currently unused (orbiting mode preferred for Home)
+// import PawParticles from './PawParticles';
 import { Routes, Route, Link, useLocation } from 'react-router-dom';
 import Home, { homeCardRef } from './pages/Home';
 import PageTransition from './PageTransition';
@@ -18,42 +20,45 @@ import Contact from './pages/Contact';
 import InteractiveBackground from './InteractiveBackground';
 import OrbitingPawParticles from './OrbitingPawParticles';
 
-// Utility function to detect if the user is on a mobile device
-function isMobile() {
-  return /Mobi|Android/i.test(navigator.userAgent);
-}
 
 
+// Utility function to detect iOS (for motion permission UI)
 function isIOS() {
   return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 }
 
 function App() {
+  // Only show motion permission button if on iOS and permission API is available
+  const [showMotionBtn, setShowMotionBtn] = useState(
+    isIOS() && typeof DeviceMotionEvent !== 'undefined' && typeof DeviceMotionEvent.requestPermission === 'function'
+  );
 
-  // Show fewer paw particles on mobile for better performance
-  const pawCount = isMobile() ? 8 : 16;
-  const [motionEnabled, setMotionEnabled] = useState(false);
-  const [showMotionBtn, setShowMotionBtn] = useState(isIOS() && typeof DeviceMotionEvent !== 'undefined' && typeof DeviceMotionEvent.requestPermission === 'function');
-
+  // Handler for enabling motion-based backgrounds on iOS
   const handleEnableMotion = () => {
-    if (typeof DeviceMotionEvent !== 'undefined' && typeof DeviceMotionEvent.requestPermission === 'function') {
+    if (
+      typeof DeviceMotionEvent !== 'undefined' &&
+      typeof DeviceMotionEvent.requestPermission === 'function'
+    ) {
       DeviceMotionEvent.requestPermission().then(response => {
         if (response === 'granted') {
-          setMotionEnabled(true);
           setShowMotionBtn(false);
         }
       });
     }
   };
 
+  // Get current location for animated route transitions
   const location = useLocation();
-
 
   return (
     // Root container: sets up background image and layout
-    <div
-      className="App cute-theme"
-    >
+    <div className="App cute-theme">
+
+      {/*
+        iOS motion permission button
+        - Only visible on iOS devices with DeviceMotionEvent support
+        - Allows user to enable tilt-based background movement
+      */}
       {showMotionBtn && (
         <button
           className="motion-btn"
@@ -81,29 +86,48 @@ function App() {
         </button>
       )}
 
+      {/*
+        Main animated background image
+        - Blended with gradient overlay for dreamy effect
+        - Uses fixed positioning for parallax feel
+      */}
       <div
-  className="bg-image"
-  style={{
-    backgroundImage: "url('/lost in japan.jpg')",
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
-    backgroundAttachment: 'fixed',
-    mixBlendMode: 'lighten',
-    opacity: 0.93,
-  }}
-></div>
+        className="bg-image"
+        style={{
+          backgroundImage: "url('/lost in japan.jpg')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          backgroundAttachment: 'fixed',
+          mixBlendMode: 'lighten',
+          opacity: 0.93,
+        }}
+      ></div>
 
-      {/* Orbiting paw particles around the Home card */}
+      {/*
+        Orbiting paw particles (only on Home)
+        - Animated SVG paws orbit the Home card for playful effect
+      */}
       {window.location.pathname === '/' && <OrbitingPawParticles targetRef={homeCardRef} />}
-      {/* Interactive animated gradient background overlay */}
+
+      {/*
+        Interactive animated gradient overlay
+        - Reacts to mouse/tilt for magical background
+      */}
       <InteractiveBackground />
-      {/* Animated floating paw prints background effect (disabled for orbiting mode) */}
+
+      {/*
+        Floating paw particles (disabled for orbiting mode)
+        - Use <PawParticles count={pawCount} /> to enable classic floating mode
+      */}
       {/* <PawParticles count={pawCount} /> */}
 
-      {/* Floating Nav + Card Container */}
+      {/*
+        Floating navigation and card container
+        - Contains nav bar and animated page transitions
+      */}
       <div className="card-nav-flex">
-        <nav className="main-nav">
+        <nav className="main-nav" aria-label="Main navigation">
           <ul>
             <li><Link className="nav-link" to="/">Home</Link></li>
             <li><Link className="nav-link" to="/about">About</Link></li>
@@ -111,6 +135,10 @@ function App() {
           </ul>
         </nav>
         <main>
+          {/*
+            PageTransition animates route changes for a smooth, dreamy feel
+            - Uses location.key for unique transitions
+          */}
           <PageTransition locationKey={location.key}>
             <Routes location={location}>
               <Route path="/" element={<Home />} />
@@ -120,7 +148,6 @@ function App() {
           </PageTransition>
         </main>
       </div>
-
     </div>
   );
 }
