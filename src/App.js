@@ -21,10 +21,6 @@ import InteractiveBackground from './InteractiveBackground';
 import OrbitingPawParticles from './OrbitingPawParticles';
 
 
-// Utility function to detect if the user is on a mobile device (used for performance optimizations)
-function isMobile() {
-  return /Mobi|Android/i.test(navigator.userAgent);
-}
 
 // Utility function to detect iOS (for motion permission UI)
 function isIOS() {
