@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // App.js
 // Main entry for Breezy the Fox's fursona website
 // Context: Built as a cute, playful, mobile-friendly React site for a fursona persona.

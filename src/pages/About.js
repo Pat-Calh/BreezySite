@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import FluffyBorder from '../FluffyBorder';
 import { useLocation } from 'react-router-dom';

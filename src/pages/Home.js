@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useRef, useEffect } from 'react';
 import FluffyBorder from '../FluffyBorder';
 
