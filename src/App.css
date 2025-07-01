@@ -5,10 +5,17 @@
   - Mobile-friendly and responsive
   - Animated backgrounds and floating paw effects
   - Accessible and touch-friendly
+  - All main content uses 'fursona-name' font style (Comic Sans MS/cursive, pastel pink, soft shadow)
+  - iOS-specific improvements for home screen and safe area insets
+  - Comments throughout clarify design choices and mobile/responsive logic
   Context: Created as a fun, interactive React site for a fursona, with social links and custom GIFs.
 */
 
-/* Root app container: sets up main layout and background (GIF set via inline style in App.js) */
+/*
+  Root app container
+  - Sets up main layout and background (GIF set via inline style in App.js)
+  - Safe area insets for iOS notch/home indicator
+*/
 .App.cute-theme {
   position: relative;
   z-index: 0;
@@ -99,41 +106,76 @@
   mix-blend-mode: lighten;
 }
 
+/*
+  Main card/header container
+  - Contains fursona image, name, and social links
+  - Responsive, pastel, and centered
+  - Uses gap for vertical spacing, tightened for mobile in media queries
+*/
 .App-header {
   background: rgba(255,255,255,0.78);
   border-radius: 32px;
   box-shadow: 0 4px 32px rgba(0,0,0,0.08);
-  padding: 3rem 2.5rem;
+  padding: 2rem 1.5rem; /* Reduced padding for tighter look */
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  gap: 0.8rem; /* Add gap for consistent vertical spacing */
   max-width: 420px;
-  margin: 2.5rem auto 2rem auto;
+  margin: 2rem auto 1.5rem auto;
   width: 90vw;
   min-width: 220px;
   z-index: 1;
 }
 
+/*
+  Mobile responsiveness (max-width: 600px)
+  - Tighter gaps and margins for compact card on mobile
+  - Smaller border radius for softer edges
+  - Ensures all interactive elements remain accessible and easy to tap
+*/
 @media (max-width: 600px) {
   .App-header {
     padding: 1.2rem 0.5rem;
     max-width: 98vw;
     border-radius: 18px;
+    gap: 0.08rem; /* Ultra-tight vertical spacing on mobile */
+  }
+  .fursona-img {
+    margin-bottom: 0.02rem; /* Nearly no space below image */
+  }
+  .fursona-name {
+    margin-bottom: 0.03rem;
+  }
+  .social-links {
+    margin-bottom: 0.03rem;
+    gap: 0.2rem;
   }
 }
 
+/*
+  Extra-tight layout for very small screens (max-width: 400px)
+  - Even smaller gaps, padding, and border radius
+  - Adds iOS safe area insets for notch/home indicator
+  - Maintains contrast and touch target sizes for accessibility
+*/
 @media (max-width: 400px) {
   .App-header {
     padding: 0.5rem 0.2rem;
     border-radius: 9px;
+    gap: 0.03rem; /* Maximum tightness on very small screens */
     /* Add safe area insets for iOS notch */
     padding-top: calc(0.5rem + env(safe-area-inset-top));
     padding-bottom: calc(0.5rem + env(safe-area-inset-bottom));
     box-sizing: border-box;
   }
+  .fursona-img {
+    margin-bottom: 0.01rem;
+  }
   .fursona-name {
     font-size: 1.3rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0.01rem;
     color: #ff5a8a; /* Slightly deeper pastel for contrast */
     text-shadow: 1px 2px 10px #fff9, 0 2px 6px #ffb6c1cc;
   }
@@ -151,7 +193,12 @@
     min-width: 44px;
     min-height: 44px;
   }
+  .social-links {
+    margin-bottom: 0.01rem;
+    gap: 0.09rem;
+  }
 }
+
 
 
 .fursona-img {
@@ -161,7 +208,8 @@
   border-radius: 50%;
   border: 6px solid #ffe0ec;
   box-shadow: 0 6px 24px #c2e9fb80;
-  margin-bottom: 1.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.15rem; /* Bring GIF closer to Breezy text */
   background: #fff;
   display: block;
 }
@@ -175,7 +223,7 @@
 
 .fursona-name {
   font-size: 3rem;
-  margin-bottom: 2rem;
+  margin-bottom: 0.6rem; /* Reduced margin for tighter stacking */
 }
 
 /*
@@ -243,8 +291,11 @@
 
 .social-links {
   display: flex;
-  gap: 2rem;
-  margin-top: 1rem;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1.6rem; /* More space between social icon buttons */
+  margin-bottom: 0.5rem; 
 }
 
 .social-icon {
@@ -408,7 +459,7 @@
 .main-nav ul {
   list-style: none;
   display: flex;
-  gap: 2rem;
+  gap: 2.8rem; /* Increased space between nav buttons */
   margin: 0;
   padding: 0;
 }
@@ -436,10 +487,11 @@
     max-width: 98vw;
   }
   .main-nav ul {
-    gap: 0.5rem;
+    gap: 1.2rem; /* More space between buttons, even on mobile */
   }
   .main-nav .nav-link {
     font-size: 1rem;
     padding: 0.4rem 0.7rem;
   }
 }
+

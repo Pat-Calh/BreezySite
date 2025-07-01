@@ -1,13 +1,34 @@
+/*
+  index.css
+  Global baseline styles for Breezy the Fox React site
+  - Uses system UI fonts for best cross-platform rendering and performance
+  - Applies font smoothing for cleaner text on macOS and Windows
+  - Sets monospace font for <code> elements
+  - No visual resets here; all theme and layout handled in App.css
+*/
+
 body {
   margin: 0;
+  /*
+    Use system UI font stack for speed and consistency across platforms
+    -apple-system, BlinkMacSystemFont: Best for macOS/iOS and Chrome
+      - These fonts are optimized for macOS and iOS devices, and are also used by Chrome for a consistent look and feel.
+    'Segoe UI', 'Roboto', 'Oxygen', etc.: Fallbacks for Windows, Android, Linux
+      - These fonts are used as fallbacks for Windows, Android, and Linux devices, to ensure a consistent look and feel across different platforms.
+  */
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased; /* Smoother text on macOS/Safari */
+  -moz-osx-font-smoothing: grayscale;  /* Smoother text on Firefox/macOS */
 }
 
 code {
+  /*
+    Use a monospace font stack for code elements
+    - source-code-pro: Nice modern default, with broad fallbacks
+      - This font is a modern, clean monospace font that is widely supported across different platforms.
+  */
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }

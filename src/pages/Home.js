@@ -1,27 +1,55 @@
-/* eslint-disable no-unused-vars */
+/*
+  Home.js
+  Home page content for Breezy the Fox React site
+  - Uses FluffyBorder for pastel, soft-edged card effect
+  - Features custom GIF, fursona name, and animated social links
+  - Uses a React ref for orbiting paw particle effects (anchored to card)
+  - Accessibility: all social links have aria-labels and open in new tabs
+  - Mobile/responsive: layout and spacing are handled in App.css for a seamless user experience across various devices and screen sizes
+*/
 import React, { useRef, useEffect } from 'react';
 import FluffyBorder from '../FluffyBorder';
 
-
+// Ref used to anchor orbiting paw particles on Home card
+// This ref is crucial for creating a parallax effect, where the paw particles appear to orbit around the card
 export const homeCardRef = React.createRef();
 
 export default function Home() {
-
   useEffect(() => {
-    // This ensures the ref always points to the card div for parallax anchoring
+    // Ensure the ref always points to the card div for parallax/orbiting anchoring
+    // This is necessary to maintain the correct positioning of the paw particles
     if (homeCardRef.current) {
       homeCardRef.current.scrollIntoView({ block: 'nearest', inline: 'nearest' });
     }
   }, []);
 
   return (
+    // FluffyBorder component is used to create a pastel, soft-edged card effect
+    // This component is a custom implementation that provides a unique visual style to the Home page
     <FluffyBorder color="#ffb6c1">
+      {/*
+        Main card container for Home page
+        - Contains fursona image, name, and animated social links
+        - Ref is used for orbiting paw effect
+      */}
       <header className="App-header" ref={homeCardRef}>
-        {/* Fursona image (custom GIF) */}
+        {/*
+          Fursona image (custom GIF)
+          - alt text for accessibility
+          - spacing and size handled in App.css
+        */}
         <img src="/breezy1.gif" alt="Breezy the Fox" className="fursona-img" />
-        {/* Fursona name in cute font */}
+        {/*
+          Fursona name in cute font
+          - Styled via .fursona-name in App.css
+        */}
         <h1 className="fursona-name">Breezy</h1>
-        {/* Social media links with animated SVG icons */}
+        {/*
+          Social media links with animated SVG icons
+          - Each link has aria-label for accessibility
+          - Opens in a new tab with rel="noopener noreferrer"
+          - This ensures that users with screen readers can navigate the links easily
+        */}
         <div className="social-links">
           {/* Twitter */}
           <a href="https://x.com/BreezyFops" className="social-icon twitter" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
